@@ -2,50 +2,86 @@ h1 { font-family: Nunito; font-size: 50px; font-style: normal; font-variant: nor
 h2 { font-family: Nunito; font-size: 40px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; color: white;}
 
 body{
-background-image: linear-gradient(to top, #dbdcd7 0%, #dddcd7 24%, #e2c9cc 30%, #e7627d 46%, #b8235a 59%, #801357 71%, #3d1635 84%, #1c1a27 100%);
+background-image: url(https://thumbs.gfycat.com/BetterGeneralFawn-max-1mb.gif);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+
 }
 .Carlos{
-background-color: red;
-height: 150px;
-width: 150px;
+background-color: grey;
+height: 350px;
+width: 250px;
 margin: 25px;
+transition: .5s;
 display: inline-block;
 box-shadow: 10px 10px #00000099;
+border-radius: 20px;
 }
 
+.Carlos:hover, .Mikias:hover, .Tyler:hover, .Ray:hover, .tenia:hover{
+  animation: pulse .5s linear;
+}
 .Mikias{
-background-color: red;
-height: 150px;
-width: 150px;
+background-color: grey;
+height: 350px;
+width: 250px;
 margin: 25px;
 display: inline-block;
 box-shadow: 10px 10px #00000099;
-
+border-radius: 20px;
+animation: bloom 10s;
 }
+
 
 .Tyler{
-background-color: red;
-height: 150px;
-width: 150px;
+background-color: grey;
+height: 350px;
+width: 250px;
 margin: 25px;
 display: inline-block;
 box-shadow: 10px 10px #00000099;
+border-radius: 20px;
 }
 
 .Ray{
-background-color: red;
-height: 150px;
-width: 150px;
+background-color: grey;
+height: 350px;
+width: 250px;
 margin: 25px;
 display: inline-block;
 box-shadow: 10px 10px #00000099;
+border-radius: 20px;
 }
 
 .tenia{
-background-color: red;
-height: 150px;
-width: 150px;
+background-color: grey;
+height: 350px;
+width: 250px;
 margin: 25px;
 display: inline-block;
 box-shadow: 10px 10px #00000099;
+border-radius: 20px;
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  /* to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  } */
+}
+
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
 }

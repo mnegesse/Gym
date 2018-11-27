@@ -1,37 +1,16 @@
 //this is for index.html page, logic to select particular trainer that the user wants to select.
 
-var selectedPlayer = 'mikias';
 
-var whichPlayer1 = document.getElementById('player1');
-var whichPlayer2 = document.getElementById('player2');
-var whichPlayer3 = document.getElementById('player3');
-var whichPlayer4 = document.getElementById('player4');
-var whichPlayer5 = document.getElementById('player5');
+console.log(location.hash);
 
-// //sendTrainerName is a function for index.html when user clicks on the player, it will send players name for the pokedex.html and result will be displayed
-// whichPlayer1.addEventListener('click', sendTrainerName('neeya'));
-// whichPlayer2.addEventListener('click', sendTrainerName('mikias'));
-// whichPlayer3.addEventListener('click', sendTrainerName('carlos'));
-// whichPlayer4.addEventListener('click', sendTrainerName('tyler'));
-// whichPlayer5.addEventListener('click', sendTrainerName('ray'));
-//
-
-function sendTrainerName(trainerName){
-    // take me to the pokedex.html page
-selectedPlayer = trainerName;
-}
-let trainerNameWhat = "";
-localStorage["key"] = sendTrainerName(trainerNameWhat);
-
-let playerNameFromIndex = localStorage["key"];
-My background Pokemon Video When the page loads
+var selectedPlayer = location.hash;
+// My background Pokemon Video When the page loads
 window.onload = function myFunction() {
   var vid = document.getElementById("back_video");
   vid.autoplay = true;
   vid.load;
   // vid.controls = true;
 };
-
 
 let hp;
 let defense;
@@ -40,13 +19,22 @@ let potential;
 let result =[];
 let name;
 
-let url = ["http://fizal.me/pokeapi/api/v2/name/azumarill.json","http://fizal.me/pokeapi/api/v2/name/spheal.json", "http://fizal.me/pokeapi/api/v2/name/leafeon.json"] ;
-let mikiasUrl = ["http://fizal.me/pokeapi/api/v2/name/azumarill.json","http://fizal.me/pokeapi/api/v2/name/spheal.json", "http://fizal.me/pokeapi/api/v2/name/leafeon.json"] ;
-let neeyasUrl = ["http://fizal.me/pokeapi/api/v2/name/azumarill.json","http://fizal.me/pokeapi/api/v2/name/spheal.json", "http://fizal.me/pokeapi/api/v2/name/leafeon.json"] ;
-let tylersUrl = ["http://fizal.me/pokeapi/api/v2/name/azumarill.json","http://fizal.me/pokeapi/api/v2/name/spheal.json", "http://fizal.me/pokeapi/api/v2/name/leafeon.json"] ;
-let carlossUrl = ["https://fizal.me/pokeapi/api/v2/id/6.json","https://fizal.me/pokeapi/api/v2/id/25.json", "https://fizal.me/pokeapi/api/v2/id/395.json"] ;
-let carlosPokemonImg = ["http://play.pokemonshowdown.com/sprites/xyani/pikachu.gif","http://play.pokemonshowdown.com/sprites/xyani/charizard.gif", "http://play.pokemonshowdown.com/sprites/xyani/empoleon.gif"];
+let mikiasUrl = ["https://fizal.me/pokeapi/api/v2/id/25.json", "https://fizal.me/pokeapi/api/v2/id/14.json", "https://fizal.me/pokeapi/api/v2/id/27.json"];
+let mikiasPokeImage = ["pikachugif.gif", "kakuna.gif", "sandshrew.png"];
+let mikiasTrainerImage = "mikias.png";//Trainer name is Mikias.
+
+let neeyasUrl = ["http://fizal.me/pokeapi/api/v2/name/lapras.json","http://fizal.me/pokeapi/api/v2/name/bellossom.json", "http://fizal.me/pokeapi/api/v2/name/luxio.json"] ;
+let neeyaPokeImage = [];
+
+let tylersUrl = [] ;
+let tylerPokeImage = [];
+
+let carlosUrl = ["https://fizal.me/pokeapi/api/v2/id/6.json","https://fizal.me/pokeapi/api/v2/id/25.json", "https://fizal.me/pokeapi/api/v2/id/395.json"] ;
+let carlosPokeImage = ["http://play.pokemonshowdown.com/sprites/xyani/charizard.gif","http://play.pokemonshowdown.com/sprites/xyani/pikachu.gif", "http://play.pokemonshowdown.com/sprites/xyani/empoleon.gif"];
+
 let raysUrl = ["http://fizal.me/pokeapi/api/v2/name/azumarill.json","http://fizal.me/pokeapi/api/v2/name/spheal.json", "http://fizal.me/pokeapi/api/v2/name/leafeon.json"] ;
+let rayPokeImage = [];
+
 // let pokeball = document.getElementById('preview_image');
 let pokeballSketch = document.getElementById('poke_image');
 
@@ -106,7 +94,7 @@ class Pokemon{
         /** Animation 'hover' Starts here
         From here im creating a animation where when user hover over and click on a option, info about that shows up**/
       ability_button_one.addEventListener('click', function(){
-        if(result[0]==='undefined'){
+        if(typeof result[0]==='undefined'){
           displayAbility.innerHTML = "Anonymous";
         }else{
         displayAbility.innerHTML = result[0];
@@ -114,7 +102,7 @@ class Pokemon{
       }
       });
       ability_button_two.addEventListener('click', function(){
-        if(result[1]==='undefined'){
+        if(typeof result[1]==='undefined'){
           displayAbility.innerHTML = "Anonymous";
         }else{
         displayAbility.innerHTML = result[1];
@@ -122,7 +110,7 @@ class Pokemon{
       }
       });
       ability_button_three.addEventListener('click', function(){
-        if(result[2]=='undefined'){
+        if(typeof result[2]==='undefined'){
           displayAbility.innerHTML = "Anonymous";
         }else{
         displayAbility.innerHTML = result[2];
@@ -134,13 +122,26 @@ class Pokemon{
       displayAttack.innerHTML = this.attackStat;
       displayDefense.innerHTML = this.defense;
       displayHP.innerHTML = this.hpStat;
-      pokeballSketch.src = sketchfab[sketchUrl];
+      //assigning url to the Pokemon Image
+      if(selectedPlayer==='#neeya'){
+      pokeballSketch.src = neeyaPokeImage[rand];
+      }else if(selectedPlayer==='#mikias'){
+      pokeballSketch.src = mikiasPokeImage[rand];
+      }else if(selectedPlayer==='#carlos'){
+      pokeballSketch.src = carlosPokeImage[rand];
+      }else if(selectedPlayer==='#tyler'){
+      pokeballSketch.src = tylerPokeImage[rand];
+      }else if(selectedPlayer==='#ray'){
+      pokeballSketch.src = rayPokeImage[rand];
+      }else{
+        console.log(selectedPlayer, '\terror');
+      }
 
       console.log(this.name);
       console.log(this.hpStat);
       console.log(this.defense);
       console.log(this.attackStat);
-      console.log(sketchUrl+":\t"+sketchfab[sketchUrl]);
+      console.log(sketchUrl+":\t"+mikiasPokeImage[sketchUrl]);
     }
 }
 
@@ -175,16 +176,18 @@ class Trainer{
     }
     sketchRand = rand;
     console.log("get:\t",rand);
-    if(selectedPlayer==='neeya'){
+    if(selectedPlayer==='#neeya'){
       fetchPokemonData(neeyasUrl[rand]);
-    }else if(selectedPlayer==='mikias'){
+    }else if(selectedPlayer==='#mikias'){
         fetchPokemonData(mikiasUrl[rand]);
-    }else if(selectedPlayer==='carlos'){
+    }else if(selectedPlayer==='#carlos'){
         fetchPokemonData(carlosUrl[rand]);
-    }else if(selectedPlayer==='tyler'){
+    }else if(selectedPlayer==='#tyler'){
         fetchPokemonData(tylersUrl[rand]);
-    }else{
+    }else if(selectedPlayer==='#ray'){
         fetchPokemonData(raysUrl[rand]);
+    }else{
+      console.log(selectedPlayer, '\terror');
     }
 
     }
@@ -193,13 +196,23 @@ class Trainer{
 //utilizing trainer class to display various trainer and its Pokemon
 let trainer = new Trainer('mikias');
 
+
+//This function showTrainerData() assigns who the Trainer is and his/her name, trainerName is the parameter where the player name goes
+//this function also assign trainer his her image as well
+=======
+
+
+
 //This function showTrainerData() assigns who the Trainer is and his name, trainerName is the parameter where the player name goes
 let pokemonTrainerName = document.getElementById('player_name');
 let trainerImage = document.getElementById('left_image');
 
+
+>>>>>>> master
 function showTrainerData(trainerName){
   // let nameThatTrainer = sendTrainerName('mikias');
   // selectedPlayer dont forget
+
   let trainerName = "";
   if(tainerName === "mikias"){
     pokemonTrainerName.innerHTML = "Mikias";
@@ -217,9 +230,9 @@ function showTrainerData(trainerName){
     pokemonTrainerName.innerHTML = "Roy";
     trainerImage.src = "howrang.png";
   }
+
 }
-window.onload = showTrainerData(selectedPlayer);
-//calling the function to add more pokemon data to your trainer class
+window.load = showTrainerData(selectedPlayer);
 
 //function to move to next Pokemon and its abilities
 function gotoNextPokemon(){
