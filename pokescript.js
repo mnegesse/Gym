@@ -1,14 +1,17 @@
 //this is for index.html page, logic to select particular trainer that the user wants to select.
 
-let selectedPlayer = 'mikias';
+
+var selectedPlayer = 'mikias';
+
+
 // if(location.index.html){
+
 
 var whichPlayer1 = document.getElementById('player1');
 var whichPlayer2 = document.getElementById('player2');
 var whichPlayer3 = document.getElementById('player3');
 var whichPlayer4 = document.getElementById('player4');
 var whichPlayer5 = document.getElementById('player5');
-
 
 // //sendTrainerName is a function for index.html when user clicks on the player, it will send players name for the pokedex.html and result will be displayed
 // whichPlayer1.addEventListener('click', sendTrainerName('neeya'));
@@ -43,6 +46,7 @@ let result =[];
 let name;
 
 let url = ["http://fizal.me/pokeapi/api/v2/name/azumarill.json","http://fizal.me/pokeapi/api/v2/name/spheal.json", "http://fizal.me/pokeapi/api/v2/name/leafeon.json"] ;
+
 let mikiasUrl = ["https://fizal.me/pokeapi/api/v2/id/25.json", "https://fizal.me/pokeapi/api/v2/id/14.json", "https://fizal.me/pokeapi/api/v2/id/27.json"] ;
 let mikiasPokeImage = ["pikachugif.gif", "kakuna.gif", "sandshrew.png"];
 let mikiasTrainerImage = "mikias.png";//Trainer name is Mikias.
@@ -53,6 +57,7 @@ let carlosPokemonImg = ["http://play.pokemonshowdown.com/sprites/xyani/pikachu.g
 let raysUrl = ["http://fizal.me/pokeapi/api/v2/name/azumarill.json","http://fizal.me/pokeapi/api/v2/name/spheal.json", "http://fizal.me/pokeapi/api/v2/name/leafeon.json"] ;
 // let pokeball = document.getElementById('preview_image');
 let pokeballSketch = document.getElementById('poke_image');
+
 function fetchPokemonData(thaturl) {
       axios.get(thaturl)
       .then(function (response) {
@@ -61,14 +66,6 @@ function fetchPokemonData(thaturl) {
          defense = response.data.stats[3].base_stat; //Pokemon's Defense Status
          potential = response.data.abilities; //Pokemon's Ability
          name = response.data.forms[0].name;
-         let thatPokemon = new Pokemon(name, hp, attack, defense, potential);
-         thatPokemon.display(sketchRand);
-         trainer.add(thatPokemon); // add new Pokemon, if want to add more Pokemon, In this everyone has 3 Pokemon.
-         trainer.all();
-         console.log("fpd:\tname:\t"+name);
-         console.log("fpd:\tdefense:\t"+defense);
-         console.log("fpd:\tattack:\t"+attack);
-         console.log("fpd:\tpotential:\t",potential);
 
       })
       .catch(function (error) {
@@ -86,6 +83,7 @@ function fetchPokemonData(thaturl) {
   let ability_button_one = document.getElementById('ability_one');
   let ability_button_two = document.getElementById('ability_two');
   let ability_button_three = document.getElementById('ability_three');
+
 
 
 //This Class is to Modify Pokemon Object when its method(s) is also called
@@ -108,8 +106,6 @@ class Pokemon{
       let displayAbility = document.getElementById('pokemon_ability');
       // let resultInside = [result[0], result[1], result[2]];
       let abilitiesInside = [ability_lists[0], ability_lists[1], ability_lists[2]];
-
-      //console.log("display:\tpotential:\t"+potential.showValue);
       for(var i = 0; i<potential.length; i++){
         result[i] = potential[i].ability.name;
         console.log(i+"\t"+result[i]);
@@ -142,19 +138,10 @@ class Pokemon{
       }
       });
 
-      //give value on first line, and assign keyframe/animation on the second line
       thatPokemonName.innerHTML = this.name;
-      // thatPokemonName.style.animation="heartbeat .5s linear";
-
       displayAttack.innerHTML = this.attackStat;
-      // displayAttack.style.animation="heartbeat .5s linear";
-
-      displayDefense.innerHTML = this.defenseStat;
-      // displayDefense.style.animation="heartbeat .5s linear";
+      displayDefense.innerHTML = this.defense;
       displayHP.innerHTML = this.hpStat;
-      // displayHP.style.animation="heartbeat .5s linear";
-
-      //assigning url to the Pokemon Image
       pokeballSketch.src = sketchfab[sketchUrl];
 
       console.log(this.name);
@@ -214,13 +201,18 @@ class Trainer{
 //utilizing trainer class to display various trainer and its Pokemon
 let trainer = new Trainer('mikias');
 
+
+
+
 //This function showTrainerData() assigns who the Trainer is and his name, trainerName is the parameter where the player name goes
 let pokemonTrainerName = document.getElementById('player_name');
 let trainerImage = document.getElementById('left_image');
 
+
 function showTrainerData(trainerName){
   // let nameThatTrainer = sendTrainerName('mikias');
   // selectedPlayer dont forget
+
   let trainerName = "";
   if(tainerName === "mikias"){
     pokemonTrainerName.innerHTML = "Mikias";
@@ -238,6 +230,7 @@ function showTrainerData(trainerName){
     pokemonTrainerName.innerHTML = "Roy";
     trainerImage.src = "howrang.png";
   }
+
 }
 window.onload = showTrainerData(selectedPlayer);
 //calling the function to add more pokemon data to your trainer class
@@ -246,9 +239,9 @@ window.onload = showTrainerData(selectedPlayer);
 function gotoNextPokemon(){
   trainer.get();// here the method will fetch and assign the pokemon data to its designated element
   function runThis(){
-  // thatPokemon.display(sketchRand);
+  thatPokemon.display(sketchRand);
   }
-  setTimeout(runThis, 500);
+  setTimeout(runThis, 1000);
 }
 // When clicked on this button new pokemon shows up
 let myNextButton = document.querySelector('.button_on_top');
